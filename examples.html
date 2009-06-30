@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Text Overflow Example</title>
+		<script type="text/javascript" src="../../lib/jquery-1.3.2.js"></script>
+		<script type="text/javascript" src="jquery.text-overflow.js"></script>
+		<script type="text/javascript">
+            $(function() {
+				$('#default li').textOverflow();
+
+				$('#custom li').each(function (index) {
+					$(this).textOverflow('... <a href="#' + index + '">read more</a>');
+				});
+
+				$('#dynamic li').textOverflow(null, true);
+
+				$('#resize').click(function () {
+					var d = $('#dynamic');
+					if (d.width() === 300) {
+						$('#dynamic').width(500);
+					} else {
+						$('#dynamic').width(300);
+					}
+				});
+            });
+		</script>
+        <style>
+            #default, #custom, #dynamic {
+                width: 500px;
+                border: 1px solid red;
+            }
+        </style>
+	</head>
+	<body>
+		<h1>jQuery Text Overflow examples</h1>
+		<p>This first examples shows the default settings at work. It just calls the <code>textOverflow</code> method on the list elements without any parameters.</p>
+		<code>
+			<pre>
+$('#default li').textOverflow();
+			</pre>
+		</code>
+        <ul id="default">
+			<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean quis elit in massa pretium tempus. Curabitur vehicula aliquam massa a pellentesque. Ut ut orci urna, vel pulvinar neque.</li>
+			<li>Donec diam dolor, sollicitudin eu congue eu, consectetur et felis. Fusce est odio, cursus eget feugiat sed, semper eu ante. Nullam quis mauris et turpis laoreet laoreet quis non elit. Nunc elementum laoreet elit, ac porta nunc ullamcorper et. Phasellus ornare dapibus sem, sed posuere eros pellentesque eu. Donec et quam quam. Aliquam rhoncus mollis rutrum.</li>
+            <li>Cras fringilla, nisl vitae posuere tincidunt, libero sem mattis lectus, eget consequat leo dolor ac tortor. Fusce facilisis metus eu odio commodo pulvinar. Ut sit amet ligula sed purus tincidunt tincidunt. Curabitur tempus placerat interdum. Mauris viverra, mauris et luctus malesuada, urna eros scelerisque ante, sed imperdiet velit velit nec augue. Donec arcu ante, tincidunt eget facilisis et, condimentum id magna. Donec ipsum quam, suscipit a ornare quis, vestibulum ut lectus. Fusce ultrices laoreet varius. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam diam ligula, dapibus eget scelerisque et, congue quis mauris.</li>
+		</ul>
+		<p>The second example shows how custom strings can be used for clipping. Note that the string contains dynamically generated HTML code.
+		<code>
+			<pre>
+$('#custom li').each(function (index) {
+	$(this).textOverflow('... &lt;a href="#' + index + '"&gt;read more&lt;/a&gt;');
+});
+			</pre>
+		</code>
+		<ul id="custom">
+			<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean quis elit in massa pretium tempus. Curabitur vehicula aliquam massa a pellentesque. Ut ut orci urna, vel pulvinar neque.</li>
+			<li>Donec diam dolor, sollicitudin eu congue eu, consectetur et felis. Fusce est odio, cursus eget feugiat sed, semper eu ante. Nullam quis mauris et turpis laoreet laoreet quis non elit. Nunc elementum laoreet elit, ac porta nunc ullamcorper et. Phasellus ornare dapibus sem, sed posuere eros pellentesque eu. Donec et quam quam. Aliquam rhoncus mollis rutrum.</li>
+            <li>Cras fringilla, nisl vitae posuere tincidunt, libero sem mattis lectus, eget consequat leo dolor ac tortor. Fusce facilisis metus eu odio commodo pulvinar. Ut sit amet ligula sed purus tincidunt tincidunt. Curabitur tempus placerat interdum. Mauris viverra, mauris et luctus malesuada, urna eros scelerisque ante, sed imperdiet velit velit nec augue. Donec arcu ante, tincidunt eget facilisis et, condimentum id magna. Donec ipsum quam, suscipit a ornare quis, vestibulum ut lectus. Fusce ultrices laoreet varius. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam diam ligula, dapibus eget scelerisque et, congue quis mauris.</li>
+		</ul>
+		<p>The last example uses the second parameter to the <code>textOverflow</code> method to automatically update the clipping when the parent container is resized. You can try this out by pressing the "Resize parent" button (code for this is not shown.)</p>
+		<code>
+			<pre>
+$('#dynamic li').textOverflow(null, true);
+			</pre>
+		</code>
+		<p>It passes <code>null</code> as the first parameter, indicating we wish to use the default value for clipping (the ellipsis character.)</p>
+		<button id="resize">Resize parent</button>
+		<ul id="dynamic">
+			<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean quis elit in massa pretium tempus. Curabitur vehicula aliquam massa a pellentesque. Ut ut orci urna, vel pulvinar neque.</li>
+			<li>Donec diam dolor, sollicitudin eu congue eu, consectetur et felis. Fusce est odio, cursus eget feugiat sed, semper eu ante. Nullam quis mauris et turpis laoreet laoreet quis non elit. Nunc elementum laoreet elit, ac porta nunc ullamcorper et. Phasellus ornare dapibus sem, sed posuere eros pellentesque eu. Donec et quam quam. Aliquam rhoncus mollis rutrum.</li>
+            <li>Cras fringilla, nisl vitae posuere tincidunt, libero sem mattis lectus, eget consequat leo dolor ac tortor. Fusce facilisis metus eu odio commodo pulvinar. Ut sit amet ligula sed purus tincidunt tincidunt. Curabitur tempus placerat interdum. Mauris viverra, mauris et luctus malesuada, urna eros scelerisque ante, sed imperdiet velit velit nec augue. Donec arcu ante, tincidunt eget facilisis et, condimentum id magna. Donec ipsum quam, suscipit a ornare quis, vestibulum ut lectus. Fusce ultrices laoreet varius. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam diam ligula, dapibus eget scelerisque et, congue quis mauris.</li>
+		</ul>
+	</body>
+</html>

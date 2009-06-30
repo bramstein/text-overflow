@@ -1,5 +1,5 @@
 /*!
- * jQuery Text Overflow v0.51
+ * jQuery Text Overflow v0.52
  *
  * Licensed under the new BSD License.
  * Copyright 2009, Bram Stein
@@ -29,30 +29,28 @@
                             }
                         };
 
-                    if (element.css('overflow') !== 'visible') {
-                        element.after(clone.hide());
+                    element.after(clone.hide());
+                
+                    if (clone.width() > originalWidth) {
+                        while (low < high) {
+                            mid = Math.floor(low + ((high - low) / 2));
+                            clone.html(originalText.substr(0, mid) + more);
+                            
+                            if (clone.width() < originalWidth) {
+                                low = mid + 1;
+                            } else {
+                                high = mid;
+                            }
+                        }
+  
+                        if (low < originalText.length) {
+                            element.html(originalText.substr(0, low - 1) + more);
+                        }
+                    }
+                    clone.remove();
                     
-                        if (clone.width() > originalWidth) {
-                            while (low < high) {
-                                mid = Math.floor(low + ((high - low) / 2));
-                                clone.html(originalText.substr(0, mid) + more);
-                                
-                                if (clone.width() < originalWidth) {
-                                    low = mid + 1;
-                                } else {
-                                    high = mid;
-                                }
-                            }
-      
-                            if (low < originalText.length) {
-                                element.html(originalText.substr(0, low - 1) + more);
-                            }
-                        }
-                        clone.remove();
-                        
-                        if (autoUpdate) {    
-                            setInterval(reflow, 200);
-                        }
+                    if (autoUpdate) {    
+                        setInterval(reflow, 200);
                     }
                 });
             } else {
