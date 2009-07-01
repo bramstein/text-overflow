@@ -11,7 +11,7 @@
         textOverflow: function (str, autoUpdate) {
             var more = str || '…',
                 style = document.documentElement.style,
-                textOverflow = style.hasOwnProperty('textOverflow') || style.hasOwnProperty('OTextOverflow');
+                textOverflow = ('textOverflow' in style || 'OTextOverflow' in style);
             
             if (!textOverflow) {
                 return this.each(function () {
