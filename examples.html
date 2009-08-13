@@ -7,6 +7,7 @@
 		<script type="text/javascript" src="jquery.text-overflow.js"></script>
 		<script type="text/javascript">
             $(function() {
+            /*
 				$('#default li').textOverflow();
 
 				$('#custom li').each(function (index) {
@@ -23,10 +24,12 @@
 						$('#dynamic').width(300);
 					}
 				});
+            */    
+                $('#range li').textOverflow(null, false, true);
             });
 		</script>
         <style>
-            #default, #custom, #dynamic {
+            #default, #custom, #dynamic, #range {
                 width: 500px;
                 border: 1px solid red;
             }
@@ -58,7 +61,7 @@ $('#custom li').each(function (index) {
 			<li>Donec diam dolor, sollicitudin eu congue eu, consectetur et felis. Fusce est odio, cursus eget feugiat sed, semper eu ante. Nullam quis mauris et turpis laoreet laoreet quis non elit. Nunc elementum laoreet elit, ac porta nunc ullamcorper et. Phasellus ornare dapibus sem, sed posuere eros pellentesque eu. Donec et quam quam. Aliquam rhoncus mollis rutrum.</li>
             <li>Cras fringilla, nisl vitae posuere tincidunt, libero sem mattis lectus, eget consequat leo dolor ac tortor. Fusce facilisis metus eu odio commodo pulvinar. Ut sit amet ligula sed purus tincidunt tincidunt. Curabitur tempus placerat interdum. Mauris viverra, mauris et luctus malesuada, urna eros scelerisque ante, sed imperdiet velit velit nec augue. Donec arcu ante, tincidunt eget facilisis et, condimentum id magna. Donec ipsum quam, suscipit a ornare quis, vestibulum ut lectus. Fusce ultrices laoreet varius. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam diam ligula, dapibus eget scelerisque et, congue quis mauris.</li>
 		</ul>
-		<p>The last example uses the second parameter to the <code>textOverflow</code> method to automatically update the clipping when the parent container is resized. You can try this out by pressing the "Resize parent" button (code for this is not shown.)</p>
+		<p>The next example uses the second parameter to the <code>textOverflow</code> method to automatically update the clipping when the parent container is resized. You can try this out by pressing the "Resize parent" button (code for this is not shown.)</p>
 		<code>
 			<pre>
 $('#dynamic li').textOverflow(null, true);
@@ -71,6 +74,13 @@ $('#dynamic li').textOverflow(null, true);
 			<li>Donec diam dolor, sollicitudin eu congue eu, consectetur et felis. Fusce est odio, cursus eget feugiat sed, semper eu ante. Nullam quis mauris et turpis laoreet laoreet quis non elit. Nunc elementum laoreet elit, ac porta nunc ullamcorper et. Phasellus ornare dapibus sem, sed posuere eros pellentesque eu. Donec et quam quam. Aliquam rhoncus mollis rutrum.</li>
             <li>Cras fringilla, nisl vitae posuere tincidunt, libero sem mattis lectus, eget consequat leo dolor ac tortor. Fusce facilisis metus eu odio commodo pulvinar. Ut sit amet ligula sed purus tincidunt tincidunt. Curabitur tempus placerat interdum. Mauris viverra, mauris et luctus malesuada, urna eros scelerisque ante, sed imperdiet velit velit nec augue. Donec arcu ante, tincidunt eget facilisis et, condimentum id magna. Donec ipsum quam, suscipit a ornare quis, vestibulum ut lectus. Fusce ultrices laoreet varius. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam diam ligula, dapibus eget scelerisque et, congue quis mauris.</li>
 		</ul>
+        
+        <p>The last example shows how ranges can be enabled</p>
+        <ul id="range">
+			<li>Lorem ipsum dolor sit amet, <a href="#">consectetur adipiscing elit</a>. Aenean quis elit in massa pretium tempus. Curabitur vehicula <em>aliquam massa a pellentesque</em>. Ut ut orci urna, vel pulvinar neque.</li>
+			<li>Donec diam dolor, <span class="highlight">sollicitudin eu <em>congue eu</em>, consectetur et felis</span>. Fusce est odio, cursus eget feugiat sed, semper eu ante. Nullam quis mauris et turpis laoreet laoreet quis non elit. Nunc elementum laoreet elit, ac porta nunc ullamcorper et. Phasellus ornare dapibus sem, sed posuere eros pellentesque eu. Donec et quam quam. Aliquam rhoncus mollis rutrum.</li>
+            <li>Cras fringilla, <a href="#">nisl vitae <strong>posuere tincidunt</strong>, libero sem mattis lectus, eget consequat leo dolor ac tortor</a>. Fusce facilisis metus eu odio commodo pulvinar. Ut sit amet ligula sed purus tincidunt tincidunt. Curabitur tempus placerat interdum. Mauris viverra, mauris et luctus malesuada, urna eros scelerisque ante, sed imperdiet velit velit nec augue. Donec arcu ante, tincidunt eget facilisis et, condimentum id magna. Donec ipsum quam, suscipit a ornare quis, vestibulum ut lectus. Fusce ultrices laoreet varius. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam diam ligula, dapibus eget scelerisque et, congue quis mauris.</li>
+        </ul>
 		<h2>More information &amp; details</h2>
 		<p>More details and API documentation can be found on the <a href="http://www.bramstein.com/projects/text-overflow/">jQuery text overflow plugin website</a>.</p>
 	</body>
