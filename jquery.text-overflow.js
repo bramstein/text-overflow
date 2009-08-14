@@ -7,7 +7,10 @@
  */
 /*global jQuery, document, setInterval*/
 (function ($) {
-	var hasRange = document.createRange !== undefined,
+	var style = document.documentElement.style,
+        hasTextOverflow = ('textOverflow' in style || 'OTextOverflow' in style),
+    
+        hasRange = document.createRange !== undefined,
 
         getTextNodes = function (element) {
             var result = [];
@@ -60,53 +63,57 @@
         textOverflow: function (str, autoUpdate) {
             var more = str || '…';
             
-            return this.each(function () {
-                var element = $(this),
+            if (!hasTextOverflow) {
+                return this.each(function () {
+                    var element = $(this),
 
-                    // the clone element we modify to measure the width 
-                    clone = element.clone(),
+                        // the clone element we modify to measure the width 
+                        clone = element.clone(),
 
-                    // we safe a copy so we can restore it if necessary
-                    originalElement = element.clone(),
+                        // we safe a copy so we can restore it if necessary
+                        originalElement = element.clone(),
 
-                    originalText = element.text(),
-                    originalWidth = element.width(),
-                    textNodes = getTextNodes(originalElement),
-                    low = 0, mid = 0,
-                    high = originalText.length,
-                    reflow = function () {
-                        if (originalWidth !== element.width()) {
-                            element.replaceWith(originalElement);
-                            element = originalElement;
-                            originalElement = element.clone();
-                            element.textOverflow(str, false);
-                            originalWidth = element.width();								
-                        }
-                    };
+                        originalText = element.text(),
+                        originalWidth = element.width(),
+                        textNodes = getTextNodes(originalElement),
+                        low = 0, mid = 0,
+                        high = originalText.length,
+                        reflow = function () {
+                            if (originalWidth !== element.width()) {
+                                element.replaceWith(originalElement);
+                                element = originalElement;
+                                originalElement = element.clone();
+                                element.textOverflow(str, false);
+                                originalWidth = element.width();								
+                            }
+                        };
 
-                element.after(clone.hide());
-            
-                if (clone.width() > originalWidth) {
-                    while (low < high) {
-                        mid = Math.floor(low + ((high - low) / 2));
-                        clone.empty().append(htmlSubstr(textNodes, 0, mid)).append(more);
-                        if (clone.width() < originalWidth) {
-                            low = mid + 1;
-                        } else {
-                            high = mid;
-                        }
-                    }
-
-                    if (low < originalText.length) {
-                        element.empty().append(htmlSubstr(textNodes, 0, low - 1)).append(more);
-                    }
-                }
-                clone.remove();
+                    element.after(clone.hide());
                 
-                if (autoUpdate) {    
-                    setInterval(reflow, 200);
-                }
-            });
+                    if (clone.width() > originalWidth) {
+                        while (low < high) {
+                            mid = Math.floor(low + ((high - low) / 2));
+                            clone.empty().append(htmlSubstr(textNodes, 0, mid)).append(more);
+                            if (clone.width() < originalWidth) {
+                                low = mid + 1;
+                            } else {
+                                high = mid;
+                            }
+                        }
+
+                        if (low < originalText.length) {
+                            element.empty().append(htmlSubstr(textNodes, 0, low - 1)).append(more);
+                        }
+                    }
+                    clone.remove();
+                    
+                    if (autoUpdate) {    
+                        setInterval(reflow, 200);
+                    }
+                });
+            } else {
+                return this;
+            }
         }
 	});
 })(jQuery);
