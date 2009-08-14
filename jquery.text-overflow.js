@@ -7,68 +7,78 @@
  */
 /*global jQuery, document, setInterval*/
 (function ($) {
-$.fn.textNodes = function() {
-  var ret = [];
-  $.each(this[0].childNodes, function() {
-      if (this.nodeType == 3) {
-        ret.push(this);
-    } else {
-        $.each(this.childNodes, arguments.callee);
-    }
-  });
-  return $(ret);
-}
+	$.fn.textNodes = function() {
+		var ret = [];
+		$.each(this[0].childNodes, function() {
+      		if (this.nodeType == 3) {
+				ret.push(this);
+			} else {
+				$.each(this.childNodes, arguments.callee);
+			}
+		});
+		return $(ret);
+	};
+
+	var style = document.documentElement.style,
+
+		hasTextOverflow = ('textOverflow' in style || 'OTextOverflow' in style),
+		hasRange = document.createRange !== undefined,
+
+		htmlSubstr = function (nodes, start, end) {
+			var range = document.createRange(),
+		        i = 0, len = nodes.length, index = 0, node;                   
+
+		    if (end <= start) {
+		        return element;
+		    }
+
+		    // TODO: perhaps add some check here if there is only 
+		    // one text node and then use a normal substr (or if DOM Ranges are not supported.)
+		        
+		    for (; i < len; i += 1) {
+		        node = nodes[i];
+		       
+		        // if node range includes start
+		        if (start >= index && start <= index + node.length) {
+		            range.setStart(node, start - index);
+		        }
+		        
+		        // if node range includes end
+		        if (index <= end && index + node.length >= end) {
+		            range.setEnd(node, end - index);
+		            break;
+		        }
+		        index += node.length;
+		    }
+		    return $(range.cloneContents());		
+		};
 
 	$.extend($.fn, {
-        textOverflow: function (str, autoUpdate, range) {
-            var more = str || '…',
-                useRange = document.implementation.hasFeature('Range', '2.0') && range,
-                style = document.documentElement.style,
-                textOverflow = ('textOverflow' in style || 'OTextOverflow' in style),
-                substrHtml = function (element, start, end) {
-                    var range = document.createRange(),
-                        nodes = $(element).textNodes(),
-                        i = 0, len = nodes.length, index = 0, node;
-                    
-                    if (end <= start) {
-                        return element;
-                    }
-
-                    // TODO: perhaps add some check here if there is only 
-                    // one text node and then use a normal substr.
-                        
-                    for (; i < len; i += 1) {
-                        node = nodes[i];
-                       
-                        // if node range includes start
-                        if (start >= index && start <= index + node.length) {
-                            range.setStart(node, start - index);
-                        }
-                        
-                        // if node range includes end
-                        if (index <= end && index + node.length >= end) {
-                            range.setEnd(node, end - index);
-                            break;
-                        }
-                        index += node.length;
-                    }
-                    return $(range.cloneContents());
-                };
+        textOverflow: function (str, autoUpdate) {
+            var more = str || '…';
             
-            if (!textOverflow) {
+            if (!hasTextOverflow) {
                 return this.each(function () {
                     var element = $(this),
+
+						// the clone element we modify to measure the width 
                         clone = element.clone(),
+
+						// we safe a copy so we can restore it if necessary
                         originalElement = element.clone(),
+
                         originalText = element.text(),
                         originalWidth = element.width(),
+						textNodes = originalElement.textNodes(),
                         low = 0, mid = 0,
                         high = originalText.length,
                         reflow = function () {
                             if (originalWidth !== element.width()) {
-                                element.text(originalText);
-                                element.textOverflow(str, false);
-								originalWidth = element.width();
+								element.replaceWith(originalElement);
+								element = originalElement;
+								originalElement = element.clone();
+                            	element.textOverflow(str, false);
+								originalWidth = element.width();								
                             }
                         };
 
@@ -77,8 +87,7 @@ $.fn.textNodes = function() {
                     if (clone.width() > originalWidth) {
                         while (low < high) {
                             mid = Math.floor(low + ((high - low) / 2));
-                            //clone.html(originalText.substr(0, mid) + more);
-                            clone.empty().append(substrHtml(originalElement, 0, mid)).append(more);
+                            clone.empty().append(htmlSubstr(textNodes, 0, mid)).append(more);
                             if (clone.width() < originalWidth) {
                                 low = mid + 1;
                             } else {
@@ -87,8 +96,7 @@ $.fn.textNodes = function() {
                         }
   
                         if (low < originalText.length) {
-                            //element.html(originalText.substr(0, low - 1) + more); 
-                            element.empty().append(substrHtml(originalElement, 0, low - 1)).append(more);
+                            element.empty().append(htmlSubstr(textNodes, 0, low - 1)).append(more);
                         }
                     }
                     clone.remove();
