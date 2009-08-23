@@ -1,1 +1,6 @@
 http://www.w3.org/TR/2002/WD-css3-text-20021024/#text-overflow-props
+
+Correct:
+ 1) find all descendant block elements of the text-overflow element (element.find('*').filter(function () {});
+ 2) filter out the ones that have their own flow (or are laid out statically, relative and have no width or height)
+ 3) perform text overflow on those.
