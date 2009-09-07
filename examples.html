@@ -10,10 +10,10 @@
 		<script type="text/javascript" src="jquery.text-overflow.js"></script>
 		<script type="text/javascript">
             $(function() {
-            /*
-				$('#default li').textOverflow();
-
-				$('#custom li').each(function (index) {
+            
+				$('#default').textOverflow();
+/*
+				$('#custom').each(function (index) {
 					$(this).textOverflow('... <a href="#' + index + '">read more</a>');
 				});
 
@@ -28,18 +28,24 @@
 					}
 				});
 */
-			//	$('div.citation .nowrap').textOverflow();
-			//	$('div.attributed-to').textOverflow();
+				//$('div.citation').textOverflow();
+				//$('div.attributed-to').textOverflow();
            });
 		</script>
         <style>
             #default, #custom, #dynamic {
                 width: 500px;
                 border: 1px solid red;
+				overflow: hidden;
+				text-overflow: ellipsis;
             }
 
+			#default li {
+				white-space: nowrap;
+			}
+
 div.citation      { width:100px; border: thin solid red; overflow: hidden;
-                    text-overflow-mode:ellipsis;font-size:14px }
+                    text-overflow-mode:ellipsis;font-size:14px; }
 span.nowrap       { white-space : nowrap;}
 div.attributed-to { position: relative;left:8px }
 
