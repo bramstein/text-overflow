@@ -102,7 +102,7 @@
 							return (position === 'static' && (parent.width() < e.width() || parent.height() < e.height())) || 
 									(position === 'relative' && (parent.width() < e.width() + location.left || parent.height() < e.height() + location.top));
 						}).each(function () {
-		  					var element = $(this),
+							var element = $(this),
 
 				                // the clone element we modify to measure the width 
 				                clone = element.clone(),
