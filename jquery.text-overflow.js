@@ -89,7 +89,7 @@
                         };
 
                     element.after(clone.hide());
-                
+
                     if (clone.width() > originalWidth) {
                         while (low < high) {
                             mid = Math.floor(low + ((high - low) / 2));
