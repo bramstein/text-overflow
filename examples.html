@@ -7,7 +7,6 @@
 		<script type="text/javascript" src="jquery.text-overflow.js"></script>
 		<script type="text/javascript">
             $(function() {
-/*
 				$('#default li').textOverflow();
 
 				$('#custom li').each(function (index) {
@@ -24,8 +23,6 @@
 						$('#dynamic').width(300);
 					}
 				});
-*/
-				$('#fixed p').textOverflow();
            });
 		</script>
         <style>
@@ -33,13 +30,6 @@
                 width: 500px;
                 border: 1px solid red;
             }
-
-			#fixed {
-				height: 100px;
-				overflow: clip;
-				text-overflow: clip;
-			}
-
         </style>
 	</head>
 	<body>
@@ -81,9 +71,6 @@ $('#dynamic li').textOverflow(null, true);
 			<li>Donec diam dolor, <span class="highlight">sollicitudin eu <em>congue eu</em>, consectetur et felis</span>. Fusce est odio, cursus eget feugiat sed, semper eu ante. Nullam quis mauris et turpis laoreet laoreet quis non elit. Nunc elementum laoreet elit, ac porta nunc ullamcorper et. Phasellus ornare dapibus sem, sed posuere eros pellentesque eu. Donec et quam quam. Aliquam rhoncus mollis rutrum.</li>
             <li>Cras fringilla, <a href="#">nisl vitae <strong>posuere tincidunt</strong>, libero sem mattis lectus, eget consequat leo dolor ac tortor</a>. Fusce facilisis metus eu odio commodo pulvinar. Ut sit amet ligula sed purus tincidunt tincidunt. Curabitur tempus placerat interdum. Mauris viverra, mauris et luctus malesuada, urna eros scelerisque ante, sed imperdiet velit velit nec augue. Donec arcu ante, tincidunt eget facilisis et, condimentum id magna. Donec ipsum quam, suscipit a ornare quis, vestibulum ut lectus. Fusce ultrices laoreet varius. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam diam ligula, dapibus eget scelerisque et, congue quis mauris.</li>
 		</ul>
-
-		<p>It is also possible to set an explicit height:</p>
-		<div id="fixed"><p>Cras fringilla, <a href="#">nisl vitae <strong>posuere tincidunt</strong>, libero sem mattis lectus, eget consequat leo dolor ac tortor</a>. Fusce facilisis metus eu odio commodo pulvinar. Ut sit amet ligula sed purus tincidunt tincidunt. Curabitur tempus placerat interdum. Mauris viverra, mauris et luctus malesuada, urna eros scelerisque ante, sed imperdiet velit velit nec augue. Donec arcu ante, tincidunt eget facilisis et, condimentum id magna. Donec ipsum quam, suscipit a ornare quis, vestibulum ut lectus. Fusce ultrices laoreet varius. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam diam ligula, dapibus eget scelerisque et, congue quis mauris.</p></div>      
 
         <h2>More information &amp; details</h2>
 		<p>More details and API documentation can be found on the <a href="http://www.bramstein.com/projects/text-overflow/">jQuery text overflow plugin website</a>.</p>

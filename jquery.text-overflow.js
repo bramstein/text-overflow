@@ -1,8 +1,8 @@
 /*!
- * jQuery Text Overflow v0.62
+ * jQuery Text Overflow v0.63
  *
  * Licensed under the new BSD License.
- * Copyright 2009, Bram Stein
+ * Copyright 2009-2010, Bram Stein
  * All rights reserved.
  */
 /*global jQuery, document, setInterval*/
@@ -88,7 +88,12 @@
                             }
                         };
 
-                    element.after(clone.hide());
+                    element.after(clone.hide().css({
+						'position': 'absolute',
+						'width': 'auto',
+						'overflow': 'visible',
+						'max-width': 'inherit'
+					}));
 
                     if (clone.width() > originalWidth) {
                         while (low < high) {
