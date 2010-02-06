@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Text Overflow Example</title>
+		<script type="text/javascript" src="../../lib/jquery-1.3.2.js"></script>
+		<script type="text/javascript" src="jquery.text-overflow.js"></script>
+		<script type="text/javascript">
+			var domSplit = function (node, index) {
+				var stack = [node], currentNode, i = 0, result = [];
+			
+				while (stack.length !== 0) {
+					currentNode = stack.pop();
+					result.push(currentNode);	
+					// Elements
+					if (currentNode.nodeType === 1) {
+						for (i = 0; i < currentNode.childNodes.length; i += 1) {
+							stack.unshift(currentNode.childNodes[i]);
+						}
+					// Text nodes
+					} else if (currentNode.nodeType === 3) {
+						console.log('Text:');
+						//console.log(stack);	
+						//break;
+					}
+				}
+				console.log(result);
+			};
+
+			var index = 0, maxIndex = 12, result = [], found = false, tmp;
+
+			var domSplit = function (root) {
+				var domSplitAux = function (node) {
+					var i = 0;
+					if (node.nodeType === 1) {
+						tmp = node.cloneNode(false);
+						//if (result.length !== 0) {
+							result[result.length - 1].appendChild(tmp);
+						//}
+						result.push(tmp);
+						for (i = 0; i < node.childNodes.length; i += 1) {
+							if (!domSplitAux(node.childNodes[i])) {
+								found = true;
+								break;
+							}
+						}
+						if (found) {
+							console.log(result);
+							return false;
+						} else {
+							result.pop();
+							return true;
+						}
+					} else if (node.nodeType === 3) {
+						if (index + node.length <= maxIndex) {
+							tmp = node.cloneNode(false);
+						//	if (result.length !== 0) {
+								result[result.length - 1].appendChild(tmp);
+						//	} else {
+						//		result.push(tmp);
+						//	}
+							index = index + node.length;
+							return true;
+						} else {
+							tmp = node.cloneNode(false);
+							tmp.textContent = tmp.textContent.substring(0, maxIndex - index);
+						//	console.log(tmp);
+						//	if (result.length !== 0) {
+								result[result.length - 1].appendChild(tmp);
+						//	} else {
+							//	result.push(tmp);
+						//	}
+							return false;
+						}
+					} else {
+						return true;
+					}
+				};
+				result.push(root.cloneNode(false));
+				//root.childNodes.forEach(domSplitAux);
+				domSplitAux(root);
+			};
+
+			jQuery(function ($) {
+				$('#examples li').each(function (index, element) {
+					domSplit(element);
+				});
+			});
+		</script>
+        <style>
+            #default, #custom, #dynamic, #fixed, #links {
+                width: 500px;
+                border: 1px solid red;
+            }
+        </style>
+	</head>
+	<body>
+		<ul id="examples">
+			<li><strong></strong><a href="#">some <em>link</em><i> with</i> markup</a></li>
+			<!--<li><a href="#">some link</a></li>-->
+		<!--	<li>some plain text</li>
+			<li>some <em>text</em> with markup</li>
+			<li><a href="#">some <em>link</em> with markup</a></li>-->
+		</ul>
+	</body>
+</html>
