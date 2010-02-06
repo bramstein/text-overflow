@@ -61,7 +61,7 @@
 
 	$.extend($.fn, {
         textOverflow: function (str, autoUpdate) {
-            var more = str || '…';
+            var more = str || '&#x2026;';
             
             if (!hasTextOverflow) {
                 return this.each(function () {
