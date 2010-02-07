@@ -1,5 +1,5 @@
 /*!
- * jQuery Text Overflow v0.63
+ * jQuery Text Overflow v0.7
  *
  * Licensed under the new BSD License.
  * Copyright 2009-2010, Bram Stein
@@ -9,54 +9,40 @@
 (function ($) {
 	var style = document.documentElement.style,
         hasTextOverflow = ('textOverflow' in style || 'OTextOverflow' in style),
-    
-        hasRange = document.createRange !== undefined,
 
-        getTextNodes = function (element) {
-            var result = [];
-            $.each(element[0].childNodes, function () {
-                if (this.nodeType === 3) {
-                    result.push(this);
-                } else {
-                    $.each(this.childNodes, arguments.callee);
-                }
-            });
-            return $(result);
-        },
+		domSplit = function (root, maxIndex) {
+			var index = 0, result = [],
+				domSplitAux = function (nodes) {
+					var i = 0, tmp;
 
-		htmlSubstr = function (nodes, start, end) {
-			var range = document.createRange(),
-		        i = 0, len = nodes.length, index = 0, node;                   
+					if (index > maxIndex) {
+						return;
+					}
 
-		    if (end <= start) {
-		        return $(nodes);
-		    }
-            
-            if (len === 1 || !hasRange) {
-                // If ranges are not supported, or there is 
-                // only one text node we use the normal 
-                // substr method as it is much faster.
-                return $.map(nodes, function (e) {
-                    return e.textContent;
-                }).join('').substr(start, end);
-            }
-		        
-		    for (; i < len; i += 1) {
-		        node = nodes[i];
-		       
-		        // if node range includes start
-		        if (start >= index && start <= index + node.length) {
-		            range.setStart(node, start - index);
-		        }
-		        
-		        // if node range includes end
-		        if (index <= end && index + node.length >= end) {
-		            range.setEnd(node, end - index);
-		            break;
-		        }
-		        index += node.length;
-		    }
-		    return $(range.cloneContents());		
+					for (i = 0; i < nodes.length; i += 1) {
+						if (nodes[i].nodeType === 1) {
+							tmp = nodes[i].cloneNode(false);
+							result[result.length - 1].appendChild(tmp);
+							result.push(tmp);
+							domSplitAux(nodes[i].childNodes);
+							result.pop();
+						} else if (nodes[i].nodeType === 3) {
+							if (index + nodes[i].length < maxIndex) {
+								result[result.length - 1].appendChild(nodes[i].cloneNode(false));
+							} else {
+								tmp = nodes[i].cloneNode(false);
+								tmp.textContent = $.trim(tmp.textContent.substring(0, maxIndex - index));
+								result[result.length - 1].appendChild(tmp);	
+							}
+							index += nodes[i].length;
+						} else {
+							result.appendChild(nodes[i].cloneNode(false));
+						}
+					}
+				};
+			result.push(root.cloneNode(false));
+			domSplitAux(root.childNodes);
+			return $(result.pop().childNodes);
 		};
 
 	$.extend($.fn, {
@@ -70,12 +56,10 @@
                         // the clone element we modify to measure the width 
                         clone = element.clone(),
 
-                        // we safe a copy so we can restore it if necessary
+                        // we save a copy so we can restore it if necessary
                         originalElement = element.clone(),
-
                         originalText = element.text(),
                         originalWidth = element.width(),
-                        textNodes = getTextNodes(originalElement),
                         low = 0, mid = 0,
                         high = originalText.length,
                         reflow = function () {
@@ -93,12 +77,12 @@
 						'width': 'auto',
 						'overflow': 'visible',
 						'max-width': 'inherit'
-					}));
+					}));	
 
                     if (clone.width() > originalWidth) {
                         while (low < high) {
                             mid = Math.floor(low + ((high - low) / 2));
-                            clone.empty().append(htmlSubstr(textNodes, 0, mid)).append(more);
+							clone.empty().append(domSplit(originalElement.get(0), mid)).append(more);
                             if (clone.width() < originalWidth) {
                                 low = mid + 1;
                             } else {
@@ -107,7 +91,7 @@
                         }
 
                         if (low < originalText.length) {
-                            element.empty().append(htmlSubstr(textNodes, 0, low - 1)).append(more);
+							element.empty().append(domSplit(originalElement.get(0), low - 1)).append(more);
                         }
                     }
                     clone.remove();
