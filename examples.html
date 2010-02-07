@@ -7,6 +7,7 @@
 		<script type="text/javascript" src="jquery.text-overflow.js"></script>
 		<script type="text/javascript">
             $(function() {
+
 				$('#default li').textOverflow();
 
 				$('#custom li').each(function (index) {
@@ -26,7 +27,7 @@
            });
 		</script>
         <style>
-            #default, #custom, #dynamic, #fixed {
+            #default, #custom, #dynamic, #fixed, #links {
                 width: 500px;
                 border: 1px solid red;
             }
@@ -34,7 +35,7 @@
 	</head>
 	<body>
 		<h1>jQuery Text Overflow examples</h1>
-		<p>This first examples shows the default settings at work. It just calls the <code>textOverflow</code> method on the list elements without any parameters.</p>
+		<p>This first example shows the default settings at work. It just calls the <code>textOverflow</code> method on the list elements without any parameters. Note that container elements and inline elements are properly conserved and lines are truncated after words (i.e. trailing spaces are removed.)</p>
 		<code>
 			<pre>
 $('#default li').textOverflow();
@@ -44,6 +45,9 @@ $('#default li').textOverflow();
 			<li>Lorem ipsum dolor sit amet, <a href="#">consectetur adipiscing elit</a>. Aenean quis elit in massa pretium tempus. Curabitur vehicula <em>aliquam massa a pellentesque</em>. Ut ut orci urna, vel pulvinar neque.</li>
 			<li>Donec diam dolor, <span class="highlight">sollicitudin eu <em>congue eu</em>, consectetur et felis</span>. Fusce est odio, cursus eget feugiat sed, semper eu ante. Nullam quis mauris et turpis laoreet laoreet quis non elit. Nunc elementum laoreet elit, ac porta nunc ullamcorper et. Phasellus ornare dapibus sem, sed posuere eros pellentesque eu. Donec et quam quam. Aliquam rhoncus mollis rutrum.</li>
             <li>Cras fringilla, <a href="#">nisl vitae <strong>posuere tincidunt</strong>, libero sem mattis lectus, eget consequat leo dolor ac tortor</a>. Fusce facilisis metus eu odio commodo pulvinar. Ut sit amet ligula sed purus tincidunt tincidunt. Curabitur tempus placerat interdum. Mauris viverra, mauris et luctus malesuada, urna eros scelerisque ante, sed imperdiet velit velit nec augue. Donec arcu ante, tincidunt eget facilisis et, condimentum id magna. Donec ipsum quam, suscipit a ornare quis, vestibulum ut lectus. Fusce ultrices laoreet varius. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam diam ligula, dapibus eget scelerisque et, congue quis mauris.</li>
+			<li><a href="#">Lorem ipsum dolor sit amet, <em>consectetur</em> adipiscing elit. <strong>Aenean quis</strong> elit in massa pretium tempus. Curabitur vehicula aliquam massa a pellentesque. Ut ut orci urna, vel pulvinar neque.</a></li>
+			<li><a href="#">Donec diam dolor, sollicitudin eu congue eu, consectetur et felis. Fusce est odio, cursus eget feugiat sed, semper eu ante. Nullam quis mauris et turpis laoreet laoreet quis non elit. Nunc elementum laoreet elit, ac porta nunc ullamcorper et. Phasellus ornare dapibus sem, sed posuere eros pellentesque eu. Donec et quam quam. Aliquam rhoncus mollis rutrum.</a></li>
+			<li><a href="#">Cras fringilla, nisl vitae posuere tincidunt, libero sem mattis lectus, eget consequat leo dolor ac tortor. Fusce facilisis metus eu odio commodo pulvinar. Ut sit amet ligula sed purus tincidunt tincidunt. Curabitur tempus placerat interdum. Mauris viverra, mauris et luctus malesuada, urna eros scelerisque ante, sed imperdiet velit velit nec augue. Donec arcu ante, tincidunt eget facilisis et, condimentum id magna. Donec ipsum quam, suscipit a ornare quis, vestibulum ut lectus. Fusce ultrices laoreet varius. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam diam ligula, dapibus eget scelerisque et, congue quis mauris.</a></li>
 		</ul>
 		<p>The second example shows how custom strings can be used for clipping. Note that the string contains dynamically generated HTML code.
 		<code>
