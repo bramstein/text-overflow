@@ -1,5 +1,5 @@
 /*!
- * jQuery Text Overflow v0.7
+ * jQuery Text Overflow v0.71
  *
  * Licensed under the new BSD License.
  * Copyright 2009-2010, Bram Stein
@@ -9,6 +9,10 @@
 (function ($) {
 	var style = document.documentElement.style,
         hasTextOverflow = ('textOverflow' in style || 'OTextOverflow' in style),
+
+		rtrim = function (str) {
+			return str.replace(/\s+$/g, '');
+		},
 
 		domSplit = function (root, maxIndex) {
 			var index = 0, result = [],
@@ -31,7 +35,7 @@
 								result[result.length - 1].appendChild(nodes[i].cloneNode(false));
 							} else {
 								tmp = nodes[i].cloneNode(false);
-								tmp.textContent = $.trim(tmp.textContent.substring(0, maxIndex - index));
+								tmp.textContent = rtrim(tmp.textContent.substring(0, maxIndex - index));
 								result[result.length - 1].appendChild(tmp);	
 							}
 							index += nodes[i].length;
