@@ -1,5 +1,5 @@
-/*!
- * jQuery Text Overflow v0.71
+/**
+ * @preserve jQuery Text Overflow v0.71
  *
  * Licensed under the new BSD License.
  * Copyright 2009-2010, Bram Stein
