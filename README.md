@@ -112,7 +112,7 @@ could position the hidden elements offscreen and set its
     Micky Hulse ― Bug report on ellipsis character encoding & incorrect
     DOM tree truncation.
 
--
+-  
     Edward Shtern ― Suggestions className, title and wholeWord options.
 
 
