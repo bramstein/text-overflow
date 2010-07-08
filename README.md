@@ -27,12 +27,16 @@ change in the document has been detected.
 
 The options object can contain the following properties:
 <dl>
-	<dt>str</dt>
+	<dt>`str`</dt>
 	<dd>The string to append to the content before it is clipped. Defaults to the ellipsis character "`…`". May also contain HTML, but the string itself is not subject to being clipped.</dd>
-	<dt>autoUpdate</dt>
+	<dt>`autoUpdate`</dt>
 	<dd>Automatically update the clipped text when the available space for the text becomes smaller or larger. Defaults to false (because it incurs some extra costs.)</dd>
-	<dt>trim</dt>
+	<dt>`trim`</dt>
 	<dd>True to remove trailing white-space at the point where content is clipped. False to leave the white-space. Defaults to true.</dd>
+	<dt>`title`</dt>
+	<dd>True to add the full text as a title attribute on the clipped element. Defaults to false.</dd>
+	<dt>`className`</dt>
+	<dd>Class name to add to the element whose content is clipped. Note that elements whose content fit in the container will not have this class name added.</dd>
 </dl>
 
 The following example shows how to replace the default ellipsis
