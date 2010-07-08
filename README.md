@@ -44,7 +44,7 @@ on automatic updating.
         autoUpdate: true
     });
 
-Please see the [examples page](examples/examples.html) for more examples on
+Please see the [examples page](text-overflow/examples/examples.html) for more examples on
 how to use the plugin.
 
 ## Frequently asked questions
@@ -68,7 +68,7 @@ elements. When a browser has native support for the `text-overflow`
 property, the text overflow plugin will let the browse handle it
 natively, and otherwise it will apply its own text truncation code.
 For more details, see the
-[CSS and JavaScript text overflow example](examples/css-or-js.html), or the
+[CSS and JavaScript text overflow example](text-overflow/examples/css-or-js.html), or the
 [Quirkmode's article on the text-overflow property](http://www.quirksmode.org/css/textoverflow.html).
 
 Q: How do I restore the original contents of the clipped elements?
@@ -105,6 +105,10 @@ could position the hidden elements offscreen and set its
 -  
     Micky Hulse ― Bug report on ellipsis character encoding & incorrect
     DOM tree truncation.
+
+-
+    Edward Shtern ― Suggestions className, title and wholeWord options.
+
 
 ### License
 
