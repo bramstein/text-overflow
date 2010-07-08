@@ -37,6 +37,8 @@ The options object can contain the following properties:
 	<dd>True to add the full text as a title attribute on the clipped element. Defaults to false.</dd>
 	<dt>`className`</dt>
 	<dd>Class name to add to the element whose content is clipped. Note that elements whose content fit in the container will not have this class name added.</dd>
+	<dt>`wholeWord`</dt>
+	<dd>True to clip content only at whole word boundaries. False might clip a word anywhere. Defaults to false.</dd>
 </dl>
 
 The following example shows how to replace the default ellipsis
