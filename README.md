@@ -31,6 +31,8 @@ The options object can contain the following properties:
 	<dd>The string to append to the content before it is clipped. Defaults to the ellipsis character "`…`". May also contain HTML, but the string itself is not subject to being clipped.</dd>
 	<dt>autoUpdate</dt>
 	<dd>Automatically update the clipped text when the available space for the text becomes smaller or larger. Defaults to false (because it incurs some extra costs.)</dd>
+	<dt>trim</dt>
+	<dd>True to remove trailing white-space at the point where content is clipped. False to leave the white-space. Defaults to true.</dd>
 </dl>
 
 The following example shows how to replace the default ellipsis
