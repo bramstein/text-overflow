@@ -18,31 +18,31 @@ header elements on a page using the default plugin settings.
 
     $('h1').textOverflow();
 
-The `textOverflow` method optionally supports two arguments: the
+The `textOverflow` method optionally supports an options object containing: the
 string to use for clipping the text, and a boolean to determine
 whether the plugin should automatically update the clipping when a
 change in the document has been detected.
 
-textOverflow([str, autoUpdate])
-:   str
-    :   The string to append to the content before it is clipped.
-        Defaults to the ellipsis character "`…`". May also contain HTML,
-        but the string itself is not subject to being clipped.
+    textOverflow(options)
 
-    autoUpdate
-    :   Automatically update the clipped text when the available space
-        for the text becomes smaller or larger. Defaults to false (because
-        it incurs some extra costs.)
-
-
+The options object can contain the following properties:
+<dl>
+	<dt>str</dt>
+	<dd>The string to append to the content before it is clipped. Defaults to the ellipsis character "`…`". May also contain HTML, but the string itself is not subject to being clipped.</dd>
+	<dt>autoUpdate</dt>
+	<dd>Automatically update the clipped text when the available space for the text becomes smaller or larger. Defaults to false (because it incurs some extra costs.)
+</dl>
 
 The following example shows how to replace the default ellipsis
 character on all list elements with a three dot version, and turn
 on automatic updating.
 
-    $('li').textOverflow('...', true);
+    $('li').textOverflow({
+        str: '...',
+        autoUpdate: true
+    });
 
-Please see the [examples page](examples.html) for more examples on
+Please see the [examples page](examples/examples.html) for more examples on
 how to use the plugin.
 
 ## Frequently asked questions

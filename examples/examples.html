@@ -10,10 +10,14 @@
 				$('#default li').textOverflow();
 
 				$('#custom li').each(function (index) {
-					$(this).textOverflow('... <a href="#' + index + '">read more</a>');
+					$(this).textOverflow({
+						str: '... <a href="#' + index + '">read more</a>'
+					});
 				});
 
-				$('#dynamic li').textOverflow(null, true);
+				$('#dynamic li').textOverflow({
+					autoUpdate: true
+				});
 
 				$('#resize').click(function () {
 					var d = $('#dynamic');
@@ -52,7 +56,9 @@ $('#default li').textOverflow();
 		<code>
 			<pre>
 $('#custom li').each(function (index) {
-	$(this).textOverflow('... &lt;a href="#' + index + '"&gt;read more&lt;/a&gt;');
+	$(this).textOverflow({
+		str: '... &lt;a href="#' + index + '"&gt;read more&lt;/a&gt;'
+	});
 });
 			</pre>
 		</code>
@@ -61,10 +67,12 @@ $('#custom li').each(function (index) {
 			<li>Donec diam dolor, sollicitudin eu congue eu, consectetur et felis. Fusce est odio, cursus eget feugiat sed, semper eu ante. Nullam quis mauris et turpis laoreet laoreet quis non elit. Nunc elementum laoreet elit, ac porta nunc ullamcorper et. Phasellus ornare dapibus sem, sed posuere eros pellentesque eu. Donec et quam quam. Aliquam rhoncus mollis rutrum.</li>
             <li>Cras fringilla, nisl vitae posuere tincidunt, libero sem mattis lectus, eget consequat leo dolor ac tortor. Fusce facilisis metus eu odio commodo pulvinar. Ut sit amet ligula sed purus tincidunt tincidunt. Curabitur tempus placerat interdum. Mauris viverra, mauris et luctus malesuada, urna eros scelerisque ante, sed imperdiet velit velit nec augue. Donec arcu ante, tincidunt eget facilisis et, condimentum id magna. Donec ipsum quam, suscipit a ornare quis, vestibulum ut lectus. Fusce ultrices laoreet varius. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam diam ligula, dapibus eget scelerisque et, congue quis mauris.</li>
 		</ul>
-		<p>The next example uses the second parameter to the <code>textOverflow</code> method to automatically update the clipping when the parent container is resized. You can try this out by pressing the "Resize parent" button (code for this is not shown.)</p>
+		<p>The next example uses the autoUpdate parameter to the <code>textOverflow</code> method to automatically update the clipping when the parent container is resized. You can try this out by pressing the "Resize parent" button (code for this is not shown.)</p>
 		<code>
 			<pre>
-$('#dynamic li').textOverflow(null, true);
+$('#dynamic li').textOverflow({
+	autoUpdate: true
+});
 			</pre>
 		</code>
 		<p>It passes <code>null</code> as the first parameter, indicating we wish to use the default value for clipping (the ellipsis character.)</p>
