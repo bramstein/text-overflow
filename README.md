@@ -47,14 +47,14 @@ how to use the plugin.
 
 ## Frequently asked questions
 
-Does this plugin support HTML elements inside the clipped content?
+Q: Does this plugin support HTML elements inside the clipped content?
 
-Yes.
+A: Yes.
 
-How do I use this in combination with browsers that support the
+Q: How do I use this in combination with browsers that support the
 text-overflow property?
 
-Simply use the CSS3 `text-overflow` property as you would normally,
+A: Simply use the CSS3 `text-overflow` property as you would normally,
 e.g.
 
     overflow: hidden;
@@ -69,18 +69,18 @@ For more details, see the
 [CSS and JavaScript text overflow example](examples/css-or-js.html), or the
 [Quirkmode's article on the text-overflow property](http://www.quirksmode.org/css/textoverflow.html).
 
-How do I restore the original contents of the clipped elements?
+Q: How do I restore the original contents of the clipped elements?
 
-It depends on what your use case is. If you want to show more or
+A: It depends on what your use case is. If you want to show more or
 less of the clipped element based on browser or element resize
 events, simply turn the `autoUpdate` functionality on. If you want
 to manually restore the original content, you'll have to store it
 somewhere yourself before applying the text overflow plugin.
 
-Text overflow doesn't work when applied to hidden elements (using
+Q: Text overflow doesn't work when applied to hidden elements (using
 `display: none`.)
 
-This is caused by the browser taking the elements out of the page
+A: This is caused by the browser taking the elements out of the page
 flow. When an element is not in the page flow it has zero width and
 height. The text overflow plugin uses the width and height to
 calculate where to clip the text, so it can not do its work when an
