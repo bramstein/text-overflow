@@ -113,7 +113,7 @@ could position the hidden elements offscreen and set its
     DOM tree truncation.
 
 -  
-    Edward Shtern ― Suggestions className, title and wholeWord options.
+    Edward Shtern ― Suggestions for: className, title and wholeWord options.
 
 
 ### License
