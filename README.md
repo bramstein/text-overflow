@@ -1,4 +1,4 @@
-## Introduction
+## jQuery Text Overflow plugin
 
 This jQuery plugin implements a simplified version of the
 [CSS3 text-overflow](https://developer.mozilla.org/en/CSS/text-overflow)
