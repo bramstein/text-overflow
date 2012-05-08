@@ -74,7 +74,7 @@ elements. When a browser has native support for the `text-overflow`
 property, the text overflow plugin will let the browse handle it
 natively, and otherwise it will apply its own text truncation code.
 For more details, see the
-[CSS and JavaScript text overflow example](text-overflow/examples/css-or-js.html), or the
+[CSS and JavaScript text overflow example](examples/css-or-js.html), or the
 [Quirkmode's article on the text-overflow property](http://www.quirksmode.org/css/textoverflow.html).
 
 Q: How do I restore the original contents of the clipped elements?
