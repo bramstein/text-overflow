@@ -50,7 +50,7 @@ on automatic updating.
         autoUpdate: true
     });
 
-Please see the [examples page](text-overflow/examples/examples.html) for more examples on
+Please see the [examples page](examples/examples.html) for more examples on
 how to use the plugin.
 
 ## Frequently asked questions
