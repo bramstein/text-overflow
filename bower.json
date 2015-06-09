@@ -1,0 +1,26 @@
+{
+  "name": "text-overflow",
+  "version": "0.7.4",
+  "homepage": "http://www.bramstein.com/projects/text-overflow/",
+  "authors": [
+    "Bram Stein <b.l.stein@gmail.com>"
+  ],
+  "description": "jQuery Text Overflow plugin",
+  "main": "lib/jquery.text-overflow.js",
+  "keywords": [
+    "jquery",
+    "plugin",
+    "text-overflow"
+  ],
+  "license": "http://www.bramstein.com/licenses/BSD.txt",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4"
+  }
+}
